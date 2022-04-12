@@ -1,0 +1,62 @@
+int motorl1=5;
+int motorl2=6;
+int motorr1=9;
+int motorr2=10;
+char c;
+ void setup()
+ {
+ Serial.begin(9600);
+ pinMode(motorl1,OUTPUT);
+ pinMode(motorl2,OUTPUT);
+ pinMode(motorr1,OUTPUT);
+ pinMode(motorr2,OUTPUT);
+}
+void loop()
+{ 
+  while(Serial.available()>0)
+ {
+   c=Serial.read();
+   Serial.println(c);
+ }
+ if(c=='b')
+ {
+  analogWrite(motorl1,0);
+  analogWrite(motorl2,150);
+  analogWrite(motorr1,150);
+  analogWrite(motorr2,0);
+delay(150);  
+ }
+  else if(c=='f')
+ {
+  analogWrite(motorl1,150);
+  analogWrite(motorl2,0);
+  analogWrite(motorr1,0);
+  analogWrite(motorr2,150);
+  delay(150);
+  }
+ else if(c=='l')
+ {
+  analogWrite(motorl1,0);
+ analogWrite(motorl2,150);
+ analogWrite(motorr1,0);
+ analogWrite(motorr2,150);
+  delay(150); 
+  }
+ else if(c=='r')
+ {
+  analogWrite(motorl2,0);
+  analogWrite(motorl1,150);
+  analogWrite(motorr1,150);
+  analogWrite(motorr2,0);
+  delay(150);
+ }
+  else
+{ 
+ analogWrite(motorl2,0);
+ analogWrite(motorl1,0);
+  analogWrite(motorr1,0);
+  analogWrite(motorr2,0);
+  delay(150);
+ }
+  delay(150);
+}
